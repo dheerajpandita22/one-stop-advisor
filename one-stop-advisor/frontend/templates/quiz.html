@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Basics quiz</h2>
+<form id="quiz-form">
+  <label>Name: <input name="name" required></label>
+  <label>Grade:
+    <select name="grade">
+      <option value="10">10</option>
+      <option value="12">12</option>
+      <option value="UG">UG</option>
+    </select>
+  </label>
+  <label>Location (District/State): <input name="location" placeholder="Patan, GJ"></label>
+  <h3>Interests (0–1)</h3>
+  <div class="grid">
+    <label>Realistic <input type="number" name="Realistic" min="0" max="1" step="0.1" value="0.5"></label>
+    <label>Investigative <input type="number" name="Investigative" min="0" max="1" step="0.1" value="0.5"></label>
+    <label>Artistic <input type="number" name="Artistic" min="0" max="1" step="0.1" value="0.5"></label>
+    <label>Social <input type="number" name="Social" min="0" max="1" step="0.1" value="0.5"></label>
+    <label>Enterprising <input type="number" name="Enterprising" min="0" max="1" step="0.1" value="0.5"></label>
+    <label>Conventional <input type="number" name="Conventional" min="0" max="1" step="0.1" value="0.5"></label>
+  </div>
+  <h3>Constraints</h3>
+  <label>Budget per year (INR): <input name="budget" type="number" placeholder="50000"></label>
+  <button class="btn" type="submit">Submit</button>
+</form>
+<div id="quiz-result"></div>
+{% endblock %}

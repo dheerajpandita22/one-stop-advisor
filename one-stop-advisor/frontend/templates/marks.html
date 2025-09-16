@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Enter or upload marks</h2>
+<form id="marks-form">
+  <label>User ID (from quiz): <input name="user_id" required></label>
+  <h3>Manual entry</h3>
+  <textarea name="marks_json" rows="6" placeholder='[{"exam_type":"10","subject_name":"Math","obtained":85,"max":100},{"subject_name":"Science","obtained":80,"max":100}]'></textarea>
+  <button class="btn" type="submit">Submit manual</button>
+</form>
+<hr/>
+<form id="upload-form" enctype="multipart/form-data">
+  <label>User ID: <input name="user_id" required></label>
+  <input type="hidden" name="mode" value="upload"/>
+  <input type="file" name="file" accept="image/*">
+  <button class="btn" type="submit">Upload marksheet image (OCR)</button>
+</form>
+<div id="marks-result"></div>
+{% endblock %}

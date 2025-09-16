@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>AI advisor</h2>
+<form id="chat-form">
+  <label>User ID: <input name="user_id" required></label>
+  <input name="message" placeholder="Ask about NEET eligibility or B.Tech cutoffs in J&K">
+  <button class="btn" type="submit">Send</button>
+</form>
+<pre id="chat-answer"></pre>
+<h3>Talk to a human</h3>
+<form id="human-form">
+  <label>User ID: <input name="user_id" required></label>
+  <textarea name="note" rows="3" placeholder="Share your concern or request a call."></textarea>
+  <button class="btn" type="submit">Request callback</button>
+</form>
+<div id="human-status"></div>
+{% endblock %}

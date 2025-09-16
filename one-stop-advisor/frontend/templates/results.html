@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Recommendations</h2>
+
+<form id="results-form">
+  <label>User ID: <input name="user_id" required></label>
+  <label>Type:
+    <select name="type">
+      <option value="stream">Stream (Class 10)</option>
+      <option value="career">Career (Class 12)</option>
+    </select>
+  </label>
+  <button class="btn" type="submit">Load Recommendations</button>
+</form>
+
+<div id="results-output" style="margin-top: 20px;"></div>
+
+<script>
+const resultsForm = document.getElementById("results-form");
+if (resultsForm) {
+  resultsForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const fd = new FormData(resultsForm);
+    const userId = fd.get("user_id");
+    const type = fd.get("type");
+
+    const res = await fetch(`/api/marks`, {
+      method: "POST",
+      body: new URLSearchParams({
+        user_id: userId,
+        mode: "manual",
+        marks_json: "[]" // dummy to trigger rec fetch
+      })
+    });
+    const data = await res.json();
+    const output = document.getElementById("results-output");
+
+    if (type === "stream" && data.streams) {
+      output.innerHTML = `<h3>Recommended Streams:</h3><ul>` +
+        data.streams.map(s => `<li><b>${s.stream}</b> — Score: ${s.score}, Reason: ${s.why}</li>`).join("") +
+        `</ul>`;
+    } else if (type === "career" && data.careers) {
+      output.innerHTML = `<h3>Recommended Careers:</h3><ul>` +
+        data.careers.map(c => `<li><b>${c.career}</b> — ${c.reason}</li>`).join("") +
+        `</ul>`;
+    } else {
+      output.innerHTML = `<p>No recommendations found. Try submitting quiz and marks first.</p>`;
+    }
+  });
+}
+</script>
+{% endblock %}

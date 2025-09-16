@@ -1,0 +1,5 @@
+name,state,district,type,fees_per_year,programs,cutoff_btech,median_lpa
+Govt College of Engineering & Technology Jammu,Jammu & Kashmir,Jammu,Government,40000,1|5,85,5.5
+NIT Srinagar,Jammu & Kashmir,Srinagar,Government,70000,1,95,12.0
+Govt Medical College Jammu,Jammu & Kashmir,Jammu,Government,120000,2,NA,10.0
+Govt Degree College Baramulla,Jammu & Kashmir,Baramulla,Government,10000,3|4,NA,3.0

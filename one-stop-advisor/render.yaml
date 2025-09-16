@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: one-stop-advisor
+    env: python
+    region: oregon
+    buildCommand: pip install -r requirements.txt && python backend/seed.py
+    startCommand: gunicorn app:app --chdir backend --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        value: change-this
+      - key: DATABASE_URL
+        value: sqlite:///instance/advisor.db
