@@ -1,6 +1,4 @@
 import os
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -10,10 +8,13 @@ from ocr import parse_marksheet
 from kb_loader import ensure_kb_loaded
 
 load_dotenv()
+
 app = Flask(__name__, template_folder="../frontend/templates", static_folder="../frontend/static")
+
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///instance/advisor.db")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret")
+
 CORS(app)
 db.init_app(app)
 
@@ -121,3 +122,4 @@ def api_escalate():
 if __name__ == "__main__":
 
     app.run(debug=True)
+
