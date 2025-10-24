@@ -1,7 +1,9 @@
+import os
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os
 from models import db, User, QuizResult, Mark, Recommendation, SessionNote
 from recommender import recommend_streams, recommend_careers, college_search, advisor_answer
 from ocr import parse_marksheet
@@ -117,4 +119,5 @@ def api_escalate():
     return jsonify({"status":"booked", "message":"A human advisor will contact you soon."})
 
 if __name__ == "__main__":
+
     app.run(debug=True)
